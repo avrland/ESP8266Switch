@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Zakładki
+        //Zakładki!
         TabHost tabhost = (TabHost)findViewById(R.id.TabHost);
         tabhost.setup();
         TabHost.TabSpec ts = tabhost.newTabSpec("tag1");
