@@ -6,6 +6,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:roundIcon="@drawable/esp_icon"
+        android:icon="@drawable/esp_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
