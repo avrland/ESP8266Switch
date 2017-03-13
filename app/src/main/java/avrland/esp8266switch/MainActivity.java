@@ -30,7 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.Calendar;
-//OK
+
 public class MainActivity extends AppCompatActivity {
     String adres = "192.168.43.20";
 
@@ -39,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Todo: Action bar
+//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(myToolbar);
+
+
+        //Todo: porządek z uruchamianymi elemetentami
         //Zakładki!
         TabHost tabhost = (TabHost)findViewById(R.id.TabHost);
         tabhost.setup();
@@ -69,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         //Przełącznik GPIO 1
         Switch toggle = (Switch) findViewById(R.id.switch1);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -94,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     //Zapytanie GET dla przełączania pinów GPIO
