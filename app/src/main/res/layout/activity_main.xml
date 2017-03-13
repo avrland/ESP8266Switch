@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/button"
             android:layout_alignParentStart="true"
-            android:text="IP: "
+            android:text="IP:"
             android:textSize="30sp" />
 
     </RelativeLayout>
