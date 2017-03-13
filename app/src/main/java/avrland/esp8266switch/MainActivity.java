@@ -30,7 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.Calendar;
-
+//OK
 public class MainActivity extends AppCompatActivity {
     String adres = "192.168.43.20";
 
