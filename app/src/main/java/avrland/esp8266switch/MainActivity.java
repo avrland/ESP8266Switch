@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         wiadomosc(gpio_numer);
                         //TextView odpowiedz = (TextView) findViewById(R.id.textView17);
-                       // odpowiedz.setText(response);
+                       //   odpowiedz.setText(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
