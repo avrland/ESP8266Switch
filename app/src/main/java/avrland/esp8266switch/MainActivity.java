@@ -2,7 +2,9 @@ package avrland.esp8266switch;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +35,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     String adres = "192.168.43.20";
-
+    String adres_z_pamieci;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,21 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Todo: porządek z uruchamianymi elemetentami
-        //Zakładki!
-        TabHost tabhost = (TabHost)findViewById(R.id.TabHost);
-        tabhost.setup();
-        TabHost.TabSpec ts = tabhost.newTabSpec("tag1");
-        ts.setContent(R.id.tab1);
-        ts.setIndicator("GPIO & BMP180");
-        tabhost.addTab(ts);
-        ts= tabhost.newTabSpec("tag3");
-        ts.setContent(R.id.tab3);
-        ts.setIndicator("Settings");
-        tabhost.addTab(ts);
 
         //Pole tekstowe adresu IP z automatycznym powrotem klawiatury
         final EditText editText = (EditText) findViewById(R.id.editText12);
-        editText.setText(adres);
+        editText.setText(odczyt());
 
         editText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -70,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     adres = editText.getText().toString();
                     hideSoftKeyboard(MainActivity.this);
                     editText.clearFocus();
+                    zapisz(adres);
                 }
                 return false;
             }
@@ -97,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     //Zapytanie GET dla przełączania pinów GPIO
@@ -188,5 +181,21 @@ public class MainActivity extends AppCompatActivity {
         TextView czas = (TextView) findViewById(R.id.textView18);
         czas.setText(c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND));
 
+    }
+
+
+    //zapis nowego adresu IP
+    public void zapisz(String nowy_adres){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(adres_z_pamieci,nowy_adres);
+        editor.commit();
+    }
+    //odczyt nowego adresu, domyślna wartość jeśli nie ma
+    public String odczyt(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String wynik = sharedPref.getString(adres_z_pamieci, adres);
+        if(wynik=="") wynik = adres;
+        return wynik;
     }
 }
