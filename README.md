@@ -1,6 +1,6 @@
 # JAWS Reader for Android
 <img src="https://raw.githubusercontent.com/avrland/JAWS_Reader/master/screen.PNG"/>
-Android app for JAWS - simply WeMos D1 project using BMP180 sensor
+Android app for JAWS - simply WeMos D1 weather station project using BMP180 sensor
 
 Features:
 - two switches for GPIO
