@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Todo: Action bar
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(myToolbar);
-
 
         //Todo: porządek z uruchamianymi elemetentami
 
@@ -104,6 +100,29 @@ public class MainActivity extends AppCompatActivity {
                         wiadomosc(gpio_numer);
                         //TextView odpowiedz = (TextView) findViewById(R.id.textView17);
                        //   odpowiedz.setText(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                wiadomosc("Connection error, check IP address.");
+            }
+        });
+        queue.add(stringRequest);
+    }
+
+    //Zapytanie GET dla przełączania pinów GPIO
+    //Todo: odczyt stanów wyprowadzeń GPIO
+    public void gpio_state(String adres_ip, String gpio) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://"+ adres_ip + gpio;
+        final String gpio_numer = gpio;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        wiadomosc(response);
+                        //TextView odpowiedz = (TextView) findViewById(R.id.textView17);
+                        //   odpowiedz.setText(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -180,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
         int seconds = c.get(Calendar.SECOND);
         TextView czas = (TextView) findViewById(R.id.textView18);
         czas.setText(c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND));
-
     }
 
 
